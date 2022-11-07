@@ -9,7 +9,7 @@ return (
 <div className="flex flex-row items-center mt-5"> 
 <span className="flex flex-col border rounded-lg shadow shadow-xl p-7 mr-4 h-[550px]">
 <h1 className="font-semibold">Recent Blocks</h1>
-<div className='overflow-y-scroll mt-5'>
+<div className='overflow-y-scroll mt-5 divide-y'>
 
 {block.map((el: any, index: number) => {
        return (

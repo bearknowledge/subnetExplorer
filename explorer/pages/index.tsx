@@ -39,7 +39,7 @@ const latestTransactions = async () => {
     
   }
 
-  setBlockTransactions(transactions)
+  setBlockTransactions(transactions.reverse())
   console.log(transactions)
 
 }
@@ -47,7 +47,7 @@ const latestTransactions = async () => {
 const last7Blocks = async () => {
 
   let blocks:any = [];
-for (let i = 0 ; i < 6; i++) {
+for (let i = 0 ; i < 8; i++) {
   const blockTransactions :any = await provider.getBlockWithTransactions(i);
   blocks.push(blockTransactions)
 }
