@@ -1,0 +1,10 @@
+Pages:
+
+Home
+Wallet (Search) -> Transactions, Balances
+Txn (Search) -> Overview , Logs, State, Comments
+Block (Search)
+
+
+get raw transaction to show on each transaction
+make sure all data is displayed as well

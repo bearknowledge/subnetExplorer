@@ -1,13 +1,34 @@
-// Next.js API route support: https://nextjs.org/docs/api-routes/introduction
-import type { NextApiRequest, NextApiResponse } from 'next'
+import clientPromise from "../../lib/mongodb";
+import { NextApiRequest, NextApiResponse } from "next";
 
-type Data = {
-  name: string
-}
+export async function getServerSideProps()  {
+   try {
+       const client = await clientPromise;
+       const db = client.db("test");
 
-export default function handler(
-  req: NextApiRequest,
-  res: NextApiResponse<Data>
-) {
-  res.status(200).json({ name: 'John Doe' })
-}
+       const transactions = await db
+           .collection("transactions")
+           .find()
+           .toArray();
+      return  {
+        props: {transactions: JSON.parse(JSON.stringify(transactions))}
+      }
+   } catch (e) {
+       console.error(e);
+   }
+
+
+   
+
+
+
+
+
+
+
+
+
+
+
+   
+};
