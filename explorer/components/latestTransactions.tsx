@@ -5,6 +5,8 @@ import Link from 'next/link'
 
 export const LatestTransactions = ({transaction, key}: any) => {
 const provider = new ethers.providers.JsonRpcProvider("http://localhost:4000");
+
+
 const [time, setTime] = useState(undefined as any)
 
 const router = useRouter();

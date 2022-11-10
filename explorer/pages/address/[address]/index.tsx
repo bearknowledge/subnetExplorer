@@ -7,27 +7,7 @@ import { useRouter } from "next/router";
 import { AddressDetails } from "../../../components/addressDetails";
 import axios from "axios";
 
-const Home: NextPage = (txn) => {
-  const provider = new ethers.providers.JsonRpcProvider(
-    "http://localhost:4000/"
-  );
-  const router = useRouter()
-  console.log(router.query.address);
-  const [AddressData, setAddressData] = useState([] as any)
-
-  const fetchAddressData = async () => {
-    if (!router.isReady) {
-      return;
-    } else {
-      const test = await axios.get("/api/address/" + router.query.address);
-      setAddressData(test.data)
-      console.log(test.data)
-    }
-  };
-
-  useEffect(() => {
-    fetchAddressData();
-  }, [router.isReady]);
+const Home: NextPage = () => {
 
   return (
     <div className="flex min-h-screen flex-col mobile:p-4 laptop:p-12">
@@ -49,7 +29,7 @@ const Home: NextPage = (txn) => {
       </div>
       <h1 className="text-black font-bold text-[30px]">{}</h1>
       
-      <AddressDetails details={AddressData} />
+      <AddressDetails/>
     </div>
   );
 };

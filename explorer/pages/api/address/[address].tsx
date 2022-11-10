@@ -8,10 +8,21 @@ export default async function handler(req: any, res: any) {
   const client = await clientPromise;
       const db = client.db("test");
 
-      const transactions = await db
+      const transactionsFrom = await db
           .collection("transactions")
           .find({from: address})
-          .toArray();
+          .toArray()
 
-      console.log(res.json(transactions))
+          const transactionTo = await db
+          .collection("transactions")
+          .find({to: address})
+          .toArray()
+
+         const array = transactionsFrom.concat(transactionTo)
+
+          res.json()
+
+          
+
+      console.log(res.json(transactionsFrom.concat(transactionTo)))
 }

@@ -60,12 +60,14 @@ async function main() {
     txHashList = [];
     for (var j = 0; j < block.transactions.length; j++) {
       var tx = block.transactions[j];
+      var time = block.timestamp
       console.log("Indexing transaction " + tx.hash)
       var Tx = new Transaction({
         hash:             tx.hash,
         nonce:            tx.nonce,
         blockHash:        tx.blockHash,
         blockNumber:      tx.blockNumber,
+        timestamp:        time,
         transactionIndex: tx.transactionIndex,
         from:             tx.from,
         to:               tx.to,
@@ -74,9 +76,11 @@ async function main() {
         gas:              tx.gasLimit,
         input:            tx.data,
         v:                tx.v,
+        s:                tx.s,
         standardV:        tx.standardV,
         r:                tx.r,
         chainid:          tx.chainId
+
       });
 
 
