@@ -1,15 +1,29 @@
 import React, { useEffect, useState } from "react"
 import { BigNumber, ethers, utils } from "ethers";
+import { useRouter } from 'next/router'
+import Link from 'next/link'
 
 export const LatestTransactions = ({transaction, key}: any) => {
 const provider = new ethers.providers.JsonRpcProvider("http://localhost:4000");
 const [time, setTime] = useState(undefined as any)
+
+const router = useRouter();
 
 const calculateTime = async () => {
   const time: any = await provider.getBlock(transaction?.blockNumber);
   const elapsedTime = Math.floor(Date.now()/ 1000) - time.timestamp;
   setTime(elapsedTime);
 }
+
+const FromHref = "address/" + transaction?.from;
+const ToHref = "address/" + transaction?.to;
+const HashHref = "txn/" + transaction?.hash;
+
+
+const handleClick = (href:any) => {
+router.push(href);
+}
+
 
 
 useEffect(() => {
@@ -19,12 +33,12 @@ return (
 
 <div className="flex flex-row items-center py-3"> 
 <div className="flex flex-col w-1/4">
-  <a className=" text-[#1fade0] truncate">{transaction?.hash}</a>
+  <button onClick={() => handleClick(HashHref)} className=" text-[#1fade0] truncate">{transaction?.hash}</button>
  <h2 className="text-[10px]"> {time} Seconds Ago</h2>
  </div>
  <div className="flex flex-col w-1/2">
- <a href="www.google.com" className="ml-4 truncate">From: <span className="text-[#1fade0]">{transaction?.from}</span></a>
- <a className="ml-4 truncate">To: <span className="text-[#1fade0]">{transaction?.to}</span> </a>
+ <span className="ml-4 flex flex-row">From: <button onClick={() => handleClick(FromHref)} className="truncate text-[#1fade0]">{transaction?.from}</button></span>
+ <span className="ml-4 flex flex-row">To: <button  onClick={() => handleClick(ToHref)} className="truncate text-[#1fade0]">{transaction?.to}</button> </span>
  </div>
  <h1 className="ml-4 w-1/4 ">{(Number(transaction?.value)/ 10 ** 18)} ETH</h1>
 

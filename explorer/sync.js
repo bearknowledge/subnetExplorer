@@ -6,7 +6,7 @@ var provider = new ethers.providers.JsonRpcProvider("http://localhost:4000");
 
 require('dotenv').config();
 const mongoose = require('mongoose');
-const information = mongoose.model('info')
+const Information = mongoose.model('Info')
 const Transaction = mongoose.model('Transaction');
 const Block = mongoose.model('Block');
 
@@ -28,13 +28,14 @@ async function main() {
   var latestIndexed = 0;
   var txCounter = 0;
   var hasData = false;
-  information.findById('61929f3efc232d63cd9dcb6b').then((data) => {
+  Information.findById('61929f3efc232d63cd9dcb6b').then((data) => {
     if (data == null) {
       // Creating new...
-      var newInfo = new information({
+      var newInfo = new Information({
         _id: '61929f3efc232d63cd9dcb6b',
         bestBlockHeight: 0,
-        txCounter: 0
+        txCounter: 0,
+        latestIndexed: 0
       });
       newInfo.save();
     } else {
@@ -45,7 +46,8 @@ async function main() {
     }
   })
 
-  latestBlock = await provider.getBlock("latest");
+  latestBlock = await provider.getBlock('latest');
+  await latestBlock;
   latestHeight = latestBlock.number;
 
   if (latestIndexed == latestHeight) {
@@ -53,12 +55,11 @@ async function main() {
     process.exit(0);
   }
 
-  for (var i = Boolean(latestIndexed == 0) ? 0 : latestIndexed + 1; i <= latestHeight; i++) {
-    block = await provider.getBlockWithTransactions(i);
+  for (let i = Boolean(latestIndexed == 0) ? 0 : latestIndexed + 1; i <= latestHeight; i++) {
+    var block = await provider.getBlockWithTransactions(i);
     txHashList = [];
     for (var j = 0; j < block.transactions.length; j++) {
       var tx = block.transactions[j];
-      await tx;
       console.log("Indexing transaction " + tx.hash)
       var Tx = new Transaction({
         hash:             tx.hash,
@@ -104,7 +105,7 @@ async function main() {
       transactions:     txHashList
     });
     await dbBlock.save()
-    information.findOneAndUpdate({ _id: '61929f3efc232d63cd9dcb6b'}).then((data) => 
+    Information.findOneAndUpdate({ _id: '61929f3efc232d63cd9dcb6b'}).then((data) => 
     {
       data.bestBlockHeight = latestBlock.number;
       data.txCount = txCounter;
