@@ -41,8 +41,8 @@ const handleClick = (href:any, type:string) => {
   } else {
     send = "/block/" + href
   }
-
 router.push(send);
+
 }
 
 const setExpanded = (status:boolean) => {
@@ -54,11 +54,8 @@ const setExpanded = (status:boolean) => {
 useEffect(() => {
   fetchAdd()
   getBalance()
-}, [router.isReady]);
+}, [router.isReady, router.query.address]);
 
-
-useEffect(() => {
-}, [router.query.address])
 
 
 return ( 
@@ -85,12 +82,12 @@ return (
 
       {addrArray?.map((el:any) => (
           <>
-         <button onClick={() => handleClick(el?.to, "txn")} className="truncate col-span-2">{el?.hash}</button>
+         <button onClick={() => handleClick(el?.hash, "txn")} className="truncate col-span-2 text-[#1fade0]">{el?.hash}</button>
           <h1 className="col-span-1">Method</h1>
-          <a className="col-span-1">{el?.blockNumber}</a>
+          <button onClick={() => handleClick(el?.blockNumber, "block")} className="text-[#1fade0] text-left col-span-1"> {el?.blockNumber}</button>
             <h1 className="col-span-1">{moment(new Date(el?.timestamp * 1000)).fromNow()}</h1>
-            <a className="truncate col-span-1">{el?.from}</a>
-            <button onClick={() => handleClick(el?.to, "to")} className="truncate text-[#1fade0] truncate col-span-1">{el?.to}</button>
+            <button onClick={() => handleClick(el?.from, "from")} className="text-[#1fade0] truncate col-span-1">{el?.from}</button>
+            <button onClick={() => handleClick(el?.to, "to")} className="text-[#1fade0] truncate col-span-1">{el?.to}</button>
           <h1 className="col-span-1">{el?.value / 10 ** 18} ETH</h1>
           <h1 className="col-span-1">{el?.gas * el?.gasPrice / 10 ** 18}</h1>
           </>

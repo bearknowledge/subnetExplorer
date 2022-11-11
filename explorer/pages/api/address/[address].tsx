@@ -18,9 +18,9 @@ export default async function handler(req: any, res: any) {
           .find({to: address})
           .toArray()
 
-         const array = transactionsFrom.concat(transactionTo)
+       
 
-          res.json()
+          res.json(transactionsFrom.concat(transactionTo))
 
           
 
