@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react"
 import { BigNumber, ethers, utils } from "ethers";
 import { useRouter } from 'next/router'
-import Link from 'next/link'
 import moment from "moment";
 
 export const LatestTransactions = ({transaction, key}: any) => {

@@ -21,6 +21,9 @@ const fetchBlock = async () => {
     console.log(router.query.block)
     const blockDetails = await axios.get("/api/block/" + router.query.block);
     setData(blockDetails.data[0])
+    console.log(blockDetails.data[0].transactions)
+    const test = await provider.getBlock(4)
+    console.log(test)
   }
 };
 
@@ -43,13 +46,15 @@ const gasFetch = async () => {
 //   setTime(currTime)
 // }
 
-const FromHref = "/address/" + data?.from;
-const ToHref = "/address/" + data?.to;
-const BlockHref = "/block/" + data?.number;
 
-
-const handleClick = (href:any) => {
-router.push(href);
+const handleClick = (href:any, type:string) => {
+  let send;
+  if (type === "addr") {
+    send = "/address/" + href
+  } else {
+    send = "/block/" + href + "/transactions"
+  }
+router.push(send);
 }
 
 const setExpanded = (status:boolean) => {
@@ -70,28 +75,15 @@ return (
   <div className="flex flex-row py-3"><h1>Block Hash:&nbsp; </h1><h1>{data?.hash}</h1></div>
   <div className="flex flex-row py-3"><h1>Parent Hash:&nbsp; </h1><h1>{data?.parentHash}</h1></div>
   <div className="flex flex-row py-3"><h1>Difficulty:&nbsp; </h1><h1>{data?.difficulty}</h1></div>
-  {/* <div className="flex flex-row py-3"><h1>Block:&nbsp; </h1><button onClick={() => handleClick(BlockHref)} className="text-[#1fade0]">{data?.blockNumber}</button></div> */}
-  <div className="flex flex-row py-3"><h1>Timestamp:&nbsp;</h1><h1>{data?.timestamp}</h1></div>
- {/* <span className="flex flex-row py-3">From:&nbsp; <button onClick={() => handleClick(FromHref)} className="truncate text-[#1fade0]">{data?.from}</button></span>
- <span className="flex flex-row py-3">To:&nbsp; <button  onClick={() => handleClick(ToHref)} className="truncate text-[#1fade0]">{data?.to}</button> </span> */}
- {/* <div className="flex flex-row py-3"><h1>data Fee:&nbsp;{valueSent} ETH</h1></div> */}
- <div className="flex flex-row py-3"><h1>Gas Limit:&nbsp; </h1><h1>{data?.gasLimit}</h1></div>
+  <button className="flex flex-row py-3" onClick={() => handleClick(data?.miner, "addr")}><h1>Fee Recipient:&nbsp; </h1><h1 className="text-[#1fade0]">{data?.miner}</h1></button>
+  <button className="flex flex-row py-3 items-center" onClick={() => handleClick(data?.number, "block")}><h1 className="text-[#1fade0] bg-gray-200 rounded-md px-3 py-2">{data?.transactions?.length} Transaction(s)</h1> &nbsp;in this block</button>
+<div className="flex flex-row py-3"><h1>Timestamp:&nbsp;</h1><h1>{data?.timestamp},&nbsp;{moment(data?.timestamp * 1000).fromNow()}</h1></div>
+<div className="flex flex-row py-3"><h1>Gas Limit:&nbsp; </h1><h1>{data?.gasLimit}</h1></div>
  <div className="flex flex-row py-3"><h1>Gas Used:&nbsp; </h1><h1>{data?.gasUsed}</h1></div>
  <div className="flex flex-row py-3"><h1>Nonce:&nbsp; </h1><h1>{data?.nonce}</h1></div>
- {isExpanded == false ?
- <button className="w-fit mx-auto p-3 rounded-lg bg-[#05e69f] font-semibold" onClick={() => setExpanded(true)}>See More Details</button>
- : <></>
-}
- {isExpanded == true ?
-  <>
- {/* <div className="flex flex-row py-3"><h1>Input Data:&nbsp; </h1><h1>{data?.input}</h1></div>
- <div className="flex flex-row py-3"><h1>r:&nbsp; </h1><h1>{data?.r}</h1></div>
- <div className="flex flex-row py-3"><h1>v:&nbsp; </h1><h1>{data?.v}</h1></div>
- <div className="flex flex-row py-3"><h1>ChainId:&nbsp; </h1><h1>{data?.chainid}</h1></div> */}
- <button className="w-fit mx-auto p-3 rounded-lg bg-[#05e69f] font-semibold" onClick={() => setExpanded(false)}>Show Less</button>
- </> 
- : <></> 
- }
+ <div className="flex flex-row py-3"><h1>Extra Data:&nbsp; </h1><h1>{data?.extraData}</h1></div>
+
+ 
  </div>
  </div>
 

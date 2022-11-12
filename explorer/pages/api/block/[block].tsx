@@ -12,6 +12,5 @@ export default async function handler(req: any, res: any) {
           .collection("blocks")
           .find({number: Number(block)})
           .toArray();
-      console.log(block)
-      console.log(res.json(blocks))
+     res.json(blocks);
 }
