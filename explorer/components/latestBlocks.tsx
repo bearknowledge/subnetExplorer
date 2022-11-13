@@ -52,7 +52,6 @@ console.log(block)
         
         <h1>{block?.transactions.length} Total Txns</h1>
       </div>
-      <h1 className="">*Fill In Block Reward*</h1>
     </div>
   );
 };

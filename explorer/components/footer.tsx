@@ -14,19 +14,19 @@ return (
   <div className="flex flex-col col-span-2">
     <h1 className="font-bold border-b-[1px] border-[white]">Company</h1>
     <ul className="font-extralight space-y-2 mt-3">
-      <li>Get started</li>
-      <li>Features</li>
-      <li>SparqNet bridge</li>
-      <li>Partners</li>
+    <li><a href="https://sparq.network/#Features" target="blank">Features</a></li>
+      <li><a href="https://sparq.network/privacypolicy.html" target="blank">Privacy Policy</a></li>
+      <li><a href="https://sparq.network/termsandconditions.html" target="blank">Terms & Conditions</a></li>
+      <li><a href="https://sparq.network/#Partners" target="blank">Partners</a></li>
     </ul>
   </div>
 
   <div className="flex flex-col col-span-2">
     <h1 className="font-bold border-b-[1px] border-[white]">Resources</h1>
     <ul className="font-extralight space-y-2 mt-3">
-      <li>Github</li>
-      <li>Medium</li>
-      <li>Twitter</li>
+      <li><a href="https://github.com/SparqNet/" target="blank">Github</a></li>
+      <li><a href="https://medium.com/@SparqNet" target="blank">Medium</a></li>
+      <li><a href="https://twitter.com/SparqNet/" target="blank">Twitter</a></li>
     </ul>
 
   </div>
