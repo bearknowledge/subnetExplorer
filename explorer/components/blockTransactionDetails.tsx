@@ -7,8 +7,6 @@ import axios from 'axios';
 export const BlockTransactionDetails = () => {
 const provider = new ethers.providers.JsonRpcProvider("http://localhost:4000");
 const [display, setDisplay] = useState([] as any)
-const [total, setTotal] = useState(0 as number)
-const [transactionArray,  setTransactionArray] = useState([])
 const router = useRouter();
 const block: string = String(router.query.block)
 console.log(block)

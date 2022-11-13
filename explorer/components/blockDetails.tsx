@@ -75,8 +75,8 @@ return (
   <div className="flex flex-row py-3"><h1>Block Hash:&nbsp; </h1><h1>{data?.hash}</h1></div>
   <div className="flex flex-row py-3"><h1>Parent Hash:&nbsp; </h1><h1>{data?.parentHash}</h1></div>
   <div className="flex flex-row py-3"><h1>Difficulty:&nbsp; </h1><h1>{data?.difficulty}</h1></div>
-  <button className="flex flex-row py-3" onClick={() => handleClick(data?.miner, "addr")}><h1>Fee Recipient:&nbsp; </h1><h1 className="text-[#1fade0]">{data?.miner}</h1></button>
-  <button className="flex flex-row py-3 items-center" onClick={() => handleClick(data?.number, "block")}><h1 className="text-[#1fade0] bg-gray-200 rounded-md px-3 py-2">{data?.transactions?.length} Transaction(s)</h1> &nbsp;in this block</button>
+  <div className="flex flex-row py-3"><h1>Fee Recipient:&nbsp; </h1><button className="w-fit text-[#1fade0]" onClick={() => handleClick(data?.miner, "addr")}>{data?.miner}</button></div>
+  <div className="flex flex-row py-3 items-center"><button className=" w-fit" onClick={() => handleClick(data?.number, "block")}><h1 className="text-[#1fade0] bg-gray-200 rounded-md px-3 py-2">{data?.transactions?.length} Transaction(s)</h1></button><h1>&nbsp;in this block</h1></div>
 <div className="flex flex-row py-3"><h1>Timestamp:&nbsp;</h1><h1>{data?.timestamp},&nbsp;{moment(data?.timestamp * 1000).fromNow()}</h1></div>
 <div className="flex flex-row py-3"><h1>Gas Limit:&nbsp; </h1><h1>{data?.gasLimit}</h1></div>
  <div className="flex flex-row py-3"><h1>Gas Used:&nbsp; </h1><h1>{data?.gasUsed}</h1></div>
@@ -91,3 +91,6 @@ return (
 
 
 }
+
+
+
