@@ -6,7 +6,7 @@ return (
 <div className="flex flex-col justify-center col-span-5">
   <span className="flex mobile:flex-col laptop:flex-row laptop:items-center">
   <h1 className="mobile:text-[12px] laptop:text-[30px]">Powered by</h1>
-  <img className="mobile:w-[50%] laptop:w-[20%] laptop:ml-2 " src="sparq.svg"/>
+  <img className="mobile:w-[50%] laptop:w-[20%] laptop:ml-2 " src="/sparq.svg"/>
   </span>
   <p className="pt-3">Subplorer is a Block Explorer and Analytics Platform for Sparq Network.</p>
 </div>
