@@ -3,7 +3,7 @@ import { BigNumber, ethers, utils } from "ethers";
 import { useRouter } from 'next/router'
 import moment from "moment";
 
-export const LatestTransactions = ({transaction, key}: any) => {
+export const LatestTransactions = ({transaction}: any) => {
 const provider = new ethers.providers.JsonRpcProvider("http://localhost:4000");
 
 

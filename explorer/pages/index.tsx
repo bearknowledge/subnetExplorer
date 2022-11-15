@@ -3,6 +3,8 @@ import clientPromise from "../lib/mongodb";
 import { TransactionBlocks } from "../components/transactions-blocks";
 import { Footer } from "../components/footer";
 import { Search } from "../components/search";
+import axios from "axios";
+import { useEffect } from "react";
 
 export async function getServerSideProps() {
   try {
@@ -27,16 +29,9 @@ const Home: NextPage = (blocks: any) => {
 
   
 
-  // const latestTransactions = async () => {
-
-  //     let transactions:any = [];
-  //   for (let i = 0; i < 10; i++ ) {
-  //   const blockTransactions : any = await provider.getBlockWithTransactions(i);
-  //    const details: {} = blockTransactions?.transactions
-  //    console.log(details)
-  //      transactions.push(details)
-
-  //   }
+  //  const runIndexer = async () => {
+  //   await axios.get("/api/indexer/indexer.js");
+  //  }
 
   //   setBlockTransactions(transactions.reverse())
   //   console.log(transactions)
@@ -53,6 +48,10 @@ const Home: NextPage = (blocks: any) => {
   // setBlocks(blocks.reverse())
 
   // }
+
+  // useEffect(() => {
+  //   runIndexer()
+  // },[])
 
 
   return (

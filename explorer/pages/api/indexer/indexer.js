@@ -1,6 +1,6 @@
-require('./models/Registration');
-require('./models/Block');
-require('./models/Info')
+require('../../../models/Registration');
+require('../../../models/Block');
+require('../../../models/Info')
 const ethers  = require('ethers');
 var provider = new ethers.providers.JsonRpcProvider("http://localhost:4000");
 
@@ -25,10 +25,11 @@ mongoose.connection
 
 async function main() {
   console.log("Starting Index...");
-  var latestIndexed = 0;
-  var txCounter = 0;
-  var hasData = false;
-  Information.findById('61929f3efc232d63cd9dcb6b').then((data) => {
+  let latestIndexed = 0;
+  let txCounter = 0;
+  let hasData = false;
+  await Information.findById('61929f3efc232d63cd9dcb6b').then((data) => {
+    
     if (data == null) {
       // Creating new...
       var newInfo = new Information({
@@ -40,6 +41,7 @@ async function main() {
       newInfo.save();
     } else {
       latestIndexed = data.bestBlockHeight;
+      console.log(data.bestBlockHeight)
       txCounter = data.txCount;
       hasData = true;
       console.log("Previous data found in the explorer, indexing from " + latestIndexed + ".");
@@ -47,10 +49,10 @@ async function main() {
   })
 
   latestBlock = await provider.getBlock('latest');
-  await latestBlock;
+  console.log(latestBlock.number, latestIndexed)
   latestHeight = latestBlock.number;
 
-  if (latestIndexed == latestHeight) {
+  if (latestIndexed === latestHeight) {
     console.log("No new blocks found, exiting.");
     process.exit(0);
   }
@@ -116,6 +118,7 @@ async function main() {
       data.save();
     });
   }
+  process.exit(0);
 
 }
 
