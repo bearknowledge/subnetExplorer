@@ -18,12 +18,13 @@ const fetchBlock = async () => {
   if (!router.isReady) {
     return;
   } else {
-    console.log(router.query.block)
     const blockDetails = await axios.get("/api/block/" + router.query.block);
-    setData(blockDetails.data[0])
-    console.log(blockDetails.data[0].transactions)
-    const test = await provider.getBlock(4)
-    console.log(test)
+    if (blockDetails.data[0] == undefined) {
+      router.push("/404")
+    } else {
+      setData(blockDetails.data[0])
+    }
+    
   }
 };
 
@@ -69,13 +70,13 @@ fetchBlock()
 }, [router.isReady, router.query.block])
 return (
 
-<div className=" shadow shadow-lg mt-5 p-7 rounded-lg">
+<div className="w-full shadow shadow-lg mt-5 p-7 rounded-lg">
 <h1 className="font-bold text-[25px]">Block# {data?.number}</h1>
  <div className="flex flex-col w-full py-3">
-  <div className="flex flex-row py-3"><h1>Block Hash:&nbsp; </h1><h1>{data?.hash}</h1></div>
-  <div className="flex flex-row py-3"><h1>Parent Hash:&nbsp; </h1><h1>{data?.parentHash}</h1></div>
+  <div className="flex flex-row py-3 truncate"><h1>Block Hash:&nbsp; </h1><h1 className="truncate">{data?.hash}</h1></div>
+  <div className="flex flex-row py-3 truncate"><h1>Parent Hash:&nbsp; </h1><h1  className="truncate">{data?.parentHash}</h1></div>
   <div className="flex flex-row py-3"><h1>Difficulty:&nbsp; </h1><h1>{data?.difficulty}</h1></div>
-  <div className="flex flex-row py-3"><h1>Fee Recipient:&nbsp; </h1><button className="w-fit text-[#1fade0]" onClick={() => handleClick(data?.miner, "addr")}>{data?.miner}</button></div>
+  <div className="flex flex-row py-3 truncate"><h1>Fee Recipient:&nbsp; </h1><button className="w-fit text-[#1fade0] truncate" onClick={() => handleClick(data?.miner, "addr")}>{data?.miner}</button></div>
   <div className="flex flex-row py-3 items-center"><button className=" w-fit" onClick={() => handleClick(data?.number, "block")}><h1 className="text-[#1fade0] bg-gray-200 rounded-md px-3 py-2">{data?.transactions?.length} Transaction(s)</h1></button><h1>&nbsp;in this block</h1></div>
 <div className="flex flex-row py-3"><h1>Timestamp:&nbsp;</h1><h1>{data?.timestamp},&nbsp;{moment(data?.timestamp * 1000).fromNow()}</h1></div>
 <div className="flex flex-row py-3"><h1>Gas Limit:&nbsp; </h1><h1>{data?.gasLimit}</h1></div>

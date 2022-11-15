@@ -1,6 +1,6 @@
-require('../../../models/Registration');
-require('../../../models/Block');
-require('../../../models/Info')
+require('./models/Registration');
+require('./models/Block');
+require('./models/Info')
 const ethers  = require('ethers');
 var provider = new ethers.providers.JsonRpcProvider("http://localhost:4000");
 
@@ -22,6 +22,14 @@ mongoose.connection
   .on('error', (err) => {
     console.log(`Connection error: ${err.message}`);
   });
+
+async function loop() {
+  setTimeout(async () => {
+    await main()
+   }, 3000)
+   
+}
+ 
 
 async function main() {
   console.log("Starting Index...");
@@ -54,9 +62,7 @@ async function main() {
 
   if (latestIndexed === latestHeight) {
     console.log("No new blocks found, exiting.");
-    process.exit(0);
-  }
-
+  } else {
   for (let i = Boolean(latestIndexed == 0) ? 0 : latestIndexed + 1; i <= latestHeight; i++) {
     var block = await provider.getBlockWithTransactions(i);
     txHashList = [];
@@ -111,15 +117,15 @@ async function main() {
       transactions:     txHashList
     });
     await dbBlock.save()
-    Information.findOneAndUpdate({ _id: '61929f3efc232d63cd9dcb6b'}).then((data) => 
+    await Information.findOneAndUpdate({ _id: '61929f3efc232d63cd9dcb6b'}).then((data) => 
     {
       data.bestBlockHeight = latestBlock.number;
       data.txCount = txCounter;
       data.save();
     });
   }
-  process.exit(0);
-
+}
+loop()
 }
 
-main();
+main()

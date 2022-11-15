@@ -20,8 +20,12 @@ const Txn: NextPage = (txn) => {
       return;
     } else {
       const test = await axios.get("/api/txn/" + router.query.txn);
-      setTxnData(test.data)
       console.log(test.data)
+      if (test.data.length === 0) {
+        router.push("/404")
+      } else {
+        setTxnData(test.data)
+      }
     }
   };
 

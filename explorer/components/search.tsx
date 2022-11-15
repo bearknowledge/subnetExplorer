@@ -1,5 +1,6 @@
 import { useRouter } from "next/router";
 import { useState } from "react";
+import axios from "axios";
 
 
 export const Search = () => {
@@ -15,16 +16,31 @@ export const Search = () => {
 
     try {
     if (input.length === 66) {
-      send = "/txn/" + input
+      const exists = await axios.get("/api/txn/" + input);
+      if (exists.data[0] === undefined) {
+          throw "Not Found"
+      } else {
+        send = "/txn/" + input
+      }
+
     } else if (input.length === 42) {
+      const exists = await axios.get("/api/address/" + input);
+      if (exists.data[0] === undefined) {
+        throw "Not Found"
+    } else {
       send = "/address/" + input
+    }
     } else if (/^\d+$/.test(input)) {
+      const exists = await axios.get("/api/block/" + input);
+      if (exists.data[0] === undefined) {
+        throw "Not Found"
+    } else {
       send = "/block/" + input
+    }
     } 
 
     router.push(send);
-
-    } catch (err) {
+    }  catch (err) {
       console.log(err)
       setNotFound(true)
       setTimeout(() => {
@@ -34,9 +50,9 @@ export const Search = () => {
     
     }
 
-    const handleClick = (bool:boolean) => {
-      setActive(bool)
-    }
+    // const handleClick = (bool:boolean) => {
+    //   setActive(bool)
+    // }
   
 
 
@@ -46,8 +62,8 @@ export const Search = () => {
     <a href="/" className="font-bold mobile:text-[20px] laptop:text-[50px] flex flex-row w-fit"><img className="w-[7%] mr-3" src="/sparq_logo.svg" /> Subplorer</a>
     <form className="flex mt-3 flex-row mobile:w-full" onSubmit={searchAll}>
     <input
-      onFocus={() => handleClick(true)}
-      onBlur={() => handleClick(false)}
+      // onFocus={() => handleClick(true)}
+      // onBlur={() => handleClick(false)}
       id="search"
       autoComplete="off"
       name="search"

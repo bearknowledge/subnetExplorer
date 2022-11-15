@@ -17,8 +17,11 @@ const fetchAdd = async () => {
     return;
   } else {
     const test = await axios.get("/api/address/" + router.query.address);
-    setAddrArray(test.data)
-    console.log(test)
+    if (test.data == undefined) {
+      router.push("/404")
+    } else {
+      setAddrArray(test.data)
+    }
   }
 };
 

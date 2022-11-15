@@ -57,8 +57,8 @@ return (
 <div className=" shadow shadow-lg mt-5 p-7 rounded-lg">
 <h1 className="font-bold text-[25px]">Transaction Details</h1>
  <div className="flex flex-col w-full py-3">
-  <div className="flex flex-row py-3"><h1>Transaction Hash:&nbsp; </h1><h1>{transaction?.hash}</h1></div>
-  <div className="flex flex-row py-3"><h1>Block Hash:&nbsp; </h1><h1>{transaction?.blockHash}</h1></div>
+  <div className="flex flex-row py-3 truncate"><h1>Transaction Hash:&nbsp; </h1><h1 className="truncate">{transaction?.hash}</h1></div>
+  <div className="flex flex-row py-3 truncate"><h1>Block Hash:&nbsp; </h1><h1 className="truncate">{transaction?.blockHash}</h1></div>
   <div className="flex flex-row py-3"><h1>Status:&nbsp; </h1><h1>Success</h1></div>
   <div className="flex flex-row py-3"><h1>Block:&nbsp; </h1><button onClick={() => handleClick(BlockHref)} className="text-[#1fade0]">{transaction?.blockNumber}</button></div>
   <div className="flex flex-row py-3"><h1>Timestamp:&nbsp;</h1><h1>{time}</h1></div>
@@ -71,17 +71,15 @@ return (
  <div className="flex flex-row py-3"><h1>Nonce:&nbsp; </h1><h1>{transaction?.nonce}</h1></div>
  {isExpanded == false ?
  <button className="w-fit mx-auto p-3 rounded-lg bg-[#05e69f] font-semibold" onClick={() => setExpanded(true)}>See More Details</button>
- : <></>
-}
- {isExpanded == true ?
-  <>
+ : 
+  <div className="">
  <div className="flex flex-row py-3"><h1>Input Data:&nbsp; </h1><h1>{transaction?.input}</h1></div>
  <div className="flex flex-row py-3"><h1>r:&nbsp; </h1><h1>{transaction?.r}</h1></div>
  <div className="flex flex-row py-3"><h1>v:&nbsp; </h1><h1>{transaction?.v}</h1></div>
  <div className="flex flex-row py-3"><h1>ChainId:&nbsp; </h1><h1>{transaction?.chainid}</h1></div>
  <button className="w-fit mx-auto p-3 rounded-lg bg-[#05e69f] font-semibold" onClick={() => setExpanded(false)}>Show Less</button>
- </> 
- : <></> 
+ </div> 
+
  }
  </div>
  </div>
