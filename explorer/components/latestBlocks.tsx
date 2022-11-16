@@ -6,7 +6,6 @@ export const LatestBlocks = ({ block }: any) => {
   const router = useRouter();
   const [time, setTime] = useState(undefined as any);
 
-console.log(block)
 
   const calculateTime = () => {
     const elapsedTime: any = moment(block?.timestamp * 1000).fromNow();

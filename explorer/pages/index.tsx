@@ -11,9 +11,9 @@ export async function getServerSideProps() {
     const client = await clientPromise;
     const db = client.db("test");
 
-    const transactions = await db.collection("transactions").find().toArray();
+    const transactions = await db.collection("transactions").find().sort("timestamp",-1).limit(10).toArray()
 
-    const blocks = await db.collection("blocks").find().toArray();
+    const blocks = await db.collection("blocks").find().sort("number",-1).limit(10).toArray();
     return {
       props: {
         transactions: JSON.parse(JSON.stringify(transactions)),
