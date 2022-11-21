@@ -2,8 +2,8 @@ export const Footer = () => {
 
 return (
 <footer className="relative bg-[black] text-[white] pt-8 pb-8 px-6 h-[300px]">
-<div className="grid grid-cols-9 gap-3">
-<div className="flex flex-col justify-center col-span-5">
+<div className="grid grid-cols-9 mobile:gap-x-[40px] tablet:gap-3">
+<div className="flex flex-col justify-center mobile:col-span-4 laptop:col-span-5 ">
   <span className="flex mobile:flex-col laptop:flex-row laptop:items-center">
   <h1 className="mobile:text-[12px] laptop:text-[30px]">Powered by</h1>
   <img className="mobile:w-[50%] laptop:w-[20%] laptop:ml-2 " src="/sparq.svg"/>

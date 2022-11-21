@@ -59,7 +59,7 @@ export const Search = () => {
 
   return (
     <>
-    <a href="/" className="font-bold mobile:text-[20px] laptop:text-[50px] flex flex-row w-fit"><img className="w-[7%] mr-3" src="/sparq_logo.svg" /> Subplorer</a>
+    <a href="/" className="font-bold mobile:text-[20px] laptop:text-[50px] flex flex-row items-center w-fit"><img className="w-[7%] mr-3" src="/sparq_logo.svg" /> Subplorer</a>
     <form className="flex mt-3 flex-row mobile:w-full" onSubmit={searchAll}>
     <input
       // onFocus={() => handleClick(true)}

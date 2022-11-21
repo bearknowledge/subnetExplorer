@@ -8,9 +8,10 @@ module.exports = {
   theme: {
     extend: {},
     screens: {
+      
 			mobile: '300px',
 
-			tablet: '640px',
+			tablet: '690px',
 
 			'sm-laptop': '1024px',
 
