@@ -1,5 +1,9 @@
 # Sparq Network Subnet Explorer
 
+<img width="1440" alt="Screen Shot 2022-11-21 at 5 06 56 PM" src="https://user-images.githubusercontent.com/88636756/203167681-f65cb1a6-a0dd-44da-b6af-e7434948c4a6.png">
+
+
+
 
 Steps to run the subplorer locally
 
@@ -7,11 +11,9 @@ Steps to run the subplorer locally
 
 2.) Cd into the explorer directory
 
-3.) 
+3. a) Add a .env file with the a variable titled "DATABASE" (Strings not included).
 
-a.) Add a .env file with the a variable titled "DATABASE" (Strings not included).
-
-b.) Set this = your mongodb uri given to you when you click "connect" then "connect your application" on mongoDb.
+3. b) Set this = your mongodb uri given to you when you click "connect" then "connect your application" on mongoDb.
 
 4.) Locate the "indexer.js" file. 
 
