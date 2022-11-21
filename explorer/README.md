@@ -11,8 +11,7 @@ Steps to run the subplorer locally
 
 2.) Cd into the explorer directory
 
-3.) 
-- Add a .env file with the a variable titled "DATABASE" (Strings not included).
+3.) Add a .env file with the a variable titled "DATABASE" (Strings not included).
 - Set this = your mongodb uri given to you when you click "connect" then "connect your application" on mongoDb.
 
 4.) Locate the "indexer.js" file. 
