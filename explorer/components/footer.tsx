@@ -2,14 +2,16 @@ export const Footer = () => {
 
 return (
 <footer className="relative bg-[black] text-[white] pt-8 pb-8 px-6 h-[300px]">
-<div className="grid grid-cols-9 mobile:gap-x-[40px] tablet:gap-3">
-<div className="flex flex-col justify-center mobile:col-span-4 laptop:col-span-5 ">
+<div className="grid grid-cols-9  tablet:gap-3">
+<div className="flex flex-col justify-center mobile:col-span-3 laptop:col-span-5 ">
   <span className="flex mobile:flex-col laptop:flex-row laptop:items-center">
   <h1 className="mobile:text-[12px] laptop:text-[30px]">Powered by</h1>
   <img className="mobile:w-[50%] laptop:w-[20%] laptop:ml-2 " src="/sparq.svg"/>
   </span>
   <p className="pt-3">Subplorer is a Block Explorer and Analytics Platform for Sparq Network.</p>
 </div>
+
+<span className="tablet:hidden"></span>
 
   <div className="flex flex-col col-span-2">
     <h1 className="font-bold border-b-[1px] border-[white]">Company</h1>
@@ -20,6 +22,8 @@ return (
       <li><a href="https://sparq.network/#Partners" target="blank">Partners</a></li>
     </ul>
   </div>
+
+  <span className="tablet:hidden"></span>
 
   <div className="flex flex-col col-span-2">
     <h1 className="font-bold border-b-[1px] border-[white]">Resources</h1>
