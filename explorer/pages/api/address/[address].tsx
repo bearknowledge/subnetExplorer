@@ -6,7 +6,7 @@ export default async function handler(req: any, res: any) {
     } = req
 
   const client = await clientPromise;
-      const db = client.db("test");
+      const db = client.db("explorerdb");
 
       const transactionsFrom = await db
           .collection("transactions")

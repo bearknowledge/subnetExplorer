@@ -5,7 +5,7 @@ import moment from 'moment';
 import axios from 'axios';
 
 export const BlockDetails = () => {
-const provider = new ethers.providers.JsonRpcProvider("http://localhost:4000");
+const provider = new ethers.providers.JsonRpcProvider("http://localhost:8080");
 const [elapsedTime, setElapsedTime] = useState(undefined as any)
 const [time, setTime] = useState(undefined as any)
 const [gasPrice, setGasPrice] = useState("")

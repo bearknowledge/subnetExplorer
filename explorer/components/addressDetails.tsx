@@ -5,7 +5,7 @@ import moment from 'moment';
 import axios from 'axios';
 
 export const AddressDetails = () => {
-const provider = new ethers.providers.JsonRpcProvider("http://localhost:4000");
+const provider = new ethers.providers.JsonRpcProvider("http://localhost:8080");
 const [balance, setBalance] = useState(0)
 const [isExpanded, setExpansion] = useState(false)
 const [addrArray, setAddrArray] = useState([])

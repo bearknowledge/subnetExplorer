@@ -9,7 +9,7 @@ import { Search } from "../../../components/search";
 
 const Txn: NextPage = (txn) => {
   const provider = new ethers.providers.JsonRpcProvider(
-    "http://localhost:4000/"
+    "http://localhost:8080/"
   );
   const router = useRouter()
   console.log(router.query.txn);

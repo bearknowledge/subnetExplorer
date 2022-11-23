@@ -5,7 +5,7 @@ import moment from 'moment';
 import axios from 'axios';
 
 export const BlockTransactionDetails = () => {
-const provider = new ethers.providers.JsonRpcProvider("http://localhost:4000");
+const provider = new ethers.providers.JsonRpcProvider("http://localhost:8080");
 const [display, setDisplay] = useState([] as any)
 const router = useRouter();
 const block: string = String(router.query.block)
