@@ -26,7 +26,6 @@ const fetchData = async () => {
     displayData.push(addition.data)
   }
   setDisplay(displayData)
-  console.log(display)
   }
   
 };
