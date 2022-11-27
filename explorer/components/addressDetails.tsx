@@ -75,6 +75,7 @@ return (
 <div className="p-7 mt-5 shadow shadow-lg rounded-lg overflow-x-auto">
 <table className="w-[1500px]">
   <thead className="text-left">
+    <tr>
       <th scope="col" className="w-[200px]">Txn Hash</th>
       <th scope="col" className="w-[100px]" >Method</th>
       <th scope="col" className="w-[80px]" >Block</th>
@@ -83,6 +84,7 @@ return (
       <th scope="col" className="w-[200px]"  >To</th>
       <th scope="col" className="w-[80px]"  >Value</th>
       <th scope="col" className="w-[80px]"  >Txn Fee</th>
+      </tr>
   </thead>
   <tbody className="divide-y">
       {addrArray?.map((el:any) => (
