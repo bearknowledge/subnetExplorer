@@ -14,7 +14,7 @@ const transactionSchema = new mongoose.Schema({
   gas: { type: Number, required: true, trim: false },
   input: { type: String, required: true, trim: false },
   v: { type: Number, required: true, trim: false },
-  s: { type: Number, required: true, trim: false },
+  s: { type: Number, required: false, trim: false },
   standardV: { type: Number, required: false, trim: false },
   r: { type: Number, required: true, trim: false },
   chainid: { type: Number, required: true, trim: false },

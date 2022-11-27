@@ -4,7 +4,7 @@ import { useRouter } from 'next/router'
 import moment from "moment";
 
 export const LatestTransactions = ({transaction}: any) => {
-const provider = new ethers.providers.JsonRpcProvider("http://localhost:4000");
+const provider = new ethers.providers.JsonRpcProvider("http://localhost:8080");
 
 
 const [time, setTime] = useState(undefined as any)

@@ -1,8 +1,8 @@
-require('./models/Registration');
-require('./models/Block');
-require('./models/Info')
+require('./models/registration');
+require('./models/block');
+require('./models/info')
 const ethers  = require('ethers');
-var provider = new ethers.providers.JsonRpcProvider("http://localhost:4000");
+var provider = new ethers.providers.JsonRpcProvider("http://localhost:8080");
 
 require('dotenv').config();
 const mongoose = require('mongoose');
@@ -43,14 +43,14 @@ async function main() {
       var newInfo = new Information({
         _id: '61929f3efc232d63cd9dcb6b',
         bestBlockHeight: 0,
-        txCounter: 0,
+        txCount: 0,
         latestIndexed: 0
       });
       newInfo.save();
     } else {
       latestIndexed = data.bestBlockHeight;
       console.log(data.bestBlockHeight)
-      txCounter = data.txCount;
+      txCount = data.txCount;
       hasData = true;
       console.log("Previous data found in the explorer, indexing from " + latestIndexed + ".");
     }

@@ -4,7 +4,7 @@ import { useRouter } from 'next/router'
 import Link from 'next/link'
 
 export const TransactionDetails = ({transaction}:any) => {
-const provider = new ethers.providers.JsonRpcProvider("http://localhost:4000");
+const provider = new ethers.providers.JsonRpcProvider("http://localhost:8080");
 const [elapsedTime, setElapsedTime] = useState(undefined as any)
 const [time, setTime] = useState(undefined as any)
 const [gasPrice, setGasPrice] = useState("")
